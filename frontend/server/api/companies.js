@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
     const backendUrl = process.env.NODE_ENV === 'production' 
       ? process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8080'
       : 'http://backend:8080'
-    
+    console.log(process.env.NUXT_PUBLIC_API_BASE)
     console.log('Server proxy fetching from:', `${backendUrl}/api/companies`)
     const response = await $fetch(`${backendUrl}/api/companies`)
     
