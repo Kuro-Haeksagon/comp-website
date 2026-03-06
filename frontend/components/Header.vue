@@ -1,20 +1,60 @@
 <template>
-  <header class="w-full bg-brand-white shadow py-4 px-8 flex items-center justify-between">
-    <NuxtLink to="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-      <img src="~/assets/KH logo.png" alt="KH Logo" class="h-10 w-auto">
-      <!-- <div class="text-2xl font-bold text-brand-dark">Personal Web</div> -->
-    </NuxtLink>
-    <nav class="flex items-center space-x-4">
-      <NuxtLink to="/" class="mx-2 text-brand-dark hover:text-brand-primary font-medium">Home</NuxtLink>
-      <NuxtLink to="/about" class="mx-2 text-brand-dark hover:text-brand-primary font-medium">About</NuxtLink>
-      <NuxtLink to="/articles" class="mx-2 text-brand-dark hover:text-brand-primary font-medium">Articles</NuxtLink>
-      <NuxtLink to="/contact" class="mx-2 text-brand-dark hover:text-brand-primary font-medium">Contact</NuxtLink>
-      <!-- <NuxtLink 
-        to="/admin/login" 
-        class="bg-brand-primary text-brand-dark px-4 py-2 rounded-md hover:bg-brand-light transition duration-200 ml-4 font-semibold"
-      >
-        Login
-      </NuxtLink> -->
-    </nav>
-  </header>
-</template> 
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-10 py-6">
+    <span class="font-serif text-base tracking-wide opacity-0 animate-fadeUp">
+      Kuro Haeksagon
+    </span>
+    <ul class="flex gap-8 list-none opacity-0 animate-fadeUp animation-delay-200">
+      <li v-for="link in navLinks" :key="link.label">
+        <NuxtLink :to="link.to"
+          class="font-mono text-[0.65rem] tracking-[3px] uppercase text-[#6b6359] hover:text-[#1a1714] transition-colors no-underline">
+          {{ link.label }}
+        </NuxtLink>
+      </li>
+    </ul>
+    ```
+
+  </nav>
+</template>
+
+<script setup>
+const navLinks = [
+  { label: 'Solutions', to: '/#solutions' },
+  { label: 'Articles', to: '/articles' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
+]
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700;800&family=Courier+Prime:ital@0;1&display=swap');
+
+.font-serif {
+  font-family: 'DM Serif Display', serif;
+}
+
+.font-mono {
+  font-family: 'Courier Prime', monospace;
+}
+
+/* animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.8s forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+</style>

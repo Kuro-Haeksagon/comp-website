@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
+      link: [{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700;800&family=Courier+Prime:ital@0;1&display=swap' }],
       title: 'Personal Web',
       meta: [
         { charset: 'utf-8' },
