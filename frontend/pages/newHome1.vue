@@ -1,71 +1,112 @@
 <template>
-    <div class="bg-[#f0ece3] text-[#1a1714] overflow-x-hidden cursor-none">
+    <div
+        class="bg-[#D4E7D9] text-[#2E3A34] overflow-x-hidden cursor-none snap-y snap-mandatory h-screen overflow-y-scroll">
 
-        <!-- CURSOR -->
         <div ref="cursor"
-            class="fixed w-3 h-3 bg-[#1a1714] rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 mix-blend-multiply" />
+            class="fixed w-3 h-3 bg-[#80B77F] rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 mix-blend-multiply" />
         <div ref="cursorRing"
-            class="fixed w-10 h-10 border border-[#1a1714] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 opacity-40 transition-[width,height] duration-300" />
+            class="fixed w-10 h-10 border border-[#80B77F] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 opacity-40 transition-[width,height] duration-300" />
 
-        <!-- NAV -->
         <Header />
 
-        <!-- ═══ HERO ═══ -->
-        <section class="min-h-screen grid grid-cols-2 max-md:grid-cols-1 overflow-hidden">
+        <!-- section 1 -->
+        <section class="snap-start min-h-screen grid grid-cols-2 max-md:grid-cols-1 overflow-hidden ">
 
-            <!-- Left -->
-            <div class="pt-36 pb-16 px-12 flex flex-col justify-between relative z-10">
+            <div class="pt-36 pb-16 px-12 flex flex-col justify-between relative z-10 m-10">
                 <div>
                     <p
-                        class="font-mono text-[0.65rem] tracking-[3px] uppercase text-[#6b6359] opacity-0 animate-fadeUp animation-delay-400">
-                        <!-- Est. 2024 — <span class="text-[#c4788a]">AI & Software</span> -->
+                        class="text-[0.65rem] tracking-[3px] uppercase text-[#64748b] opacity-0 animate-fadeUp animation-delay-400">
                     </p>
 
                     <h1 v-html="heroTitle"
-                        class="font-serif text-[clamp(4rem,10vw,9rem)] leading-[0.9] tracking-[-0.03em] mt-4 opacity-0 animate-revealUp animation-delay-500">
+                        class="font-serif text-[clamp(3rem,10vw,9rem)] leading-[0.9] tracking-[-0.03em] mt-4 opacity-0 animate-revealUp animation-delay-500">
                     </h1>
                 </div>
 
-                <div class="opacity-0 animate-fadeUp animation-delay-700">
-                    <p class="font-mono text-[0.82rem] leading-[1.9] text-[#6b6359] max-w-xs mb-8">
+                <div class="opacity-0 animate-fadeUp animation-delay-700 flex flex-col items-end gap-8">
+                    <p class="text-[1rem] leading-[1.9] text-[#64748b] max-w-xs text-left">
                         {{ heroDescription }}
                     </p>
-                    <div class="flex items-center gap-5 flex-wrap">
-                        <NuxtLink to="/about" class="relative bg-[#1a1714] text-[#f0ece3] px-8 py-3.5 font-bold text-[0.75rem] tracking-[2px] uppercase no-underline
-              after:content-[''] after:absolute after:-bottom-1 after:-right-1 after:w-full after:h-full after:border after:border-[#1a1714]
-              hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-200">
-                            Our Solutions
-                        </NuxtLink>
-                        <NuxtLink to="/articles"
-                            class="font-mono text-[0.7rem] tracking-[2px] uppercase text-[#6b6359] border-b border-[#c8c0b4] pb-0.5 no-underline hover:text-[#c4788a] hover:border-[#c4788a] transition-colors">
-                            Read Articles
-                        </NuxtLink>
-                    </div>
+                </div>
+
+                <div class="flex items-center gap-5 flex-wrap">
+                    <NuxtLink to="/about" class="relative bg-[#5B3A68] text-white px-8 py-3.5 font-bold text-[0.75rem] tracking-[2px] uppercase no-underline
+        after:content-[''] after:absolute after:-bottom-1 after:-right-1 after:w-full after:h-full after:border after:border-[#5B3A68]
+        hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-200">
+                        Our Solutions
+                    </NuxtLink>
+
+                    <NuxtLink to="/articles"
+                        class="text-[0.7rem] tracking-[2px] uppercase text-[#64748b] border-b border-[#cbd5e1] pb-0.5 no-underline hover:text-[#9C5F93] hover:border-[#9C5F93] transition-colors">
+                        Read Articles
+                    </NuxtLink>
                 </div>
             </div>
 
-            <!-- Right -->
-            <div class="relative bg-[#e8cdd3] overflow-hidden max-md:h-[50vh] flex items-center justify-center">
+            <div class="relative bg-[#C4DEC8] overflow-hidden max-md:h-[50vh] flex items-center justify-center">
                 <img src="~/assets/bot-logo-kh.png" alt="AI Bot"
                     class="max-h-[70%] object-contain animate-float drop-shadow-2xl relative z-10" />
-                <span
-                    class="absolute bottom-10 left-10 font-serif text-[5rem] leading-none text-[#8b3a50] opacity-10 pointer-events-none select-none">AI</span>
+            </div>
+        </section>
+
+        <!-- section 2 -->
+        <section class="snap-start min-h-screen py-24 px-10 grid grid-cols-[1fr_2fr] max-md:grid-cols-1 gap-20 m-10">
+
+            <p class="text-[1.25rem] tracking-[3px] uppercase text-[#64748b] pt-1 reveal col-start-1">
+                Who We Are
+            </p>
+
+            <div class="feature-card col-start-1">
+                <img src="~/assets/features.png" class="max-h-full object-contain animate-float" />
             </div>
 
-            <!-- Ticker -->
-            <!-- <div class="col-span-2 ticker-wrapper">
+            <div class="reveal col-start-2 row-span-2">
+                <h2 class="font-serif text-[clamp(2rem,4vw,3.8rem)] leading-[1.1] tracking-[-0.02em]">
+                    Each <em class="italic text-[#9C5F93]">strategy</em> is the perfect<br />
+                    combination of creativity and practicality.
+                </h2>
 
-                <div class="ticker">
+                <p class="text-[0.82rem] leading-[1.9] text-[#64748b] mt-6 max-w-xl">
+                    {{ introParagraph1 }}
+                </p>
+            </div>
 
-                    <div class="ticker-track">
+        </section>
 
-                        <div v-for="(article, i) in [...articles, ...articles]" :key="article.id + '-' + i"
-                            class="ticker-item">
+        <!-- marquee articles -->
+        <section class="snap-start min-h-screen flex items-center">
+
+            <div class="w-full overflow-hidden">
+
+                <div class="h-px bg-[#cbd5e1] opacity-30 mx-10" />
+
+                <div class="py-16 relative">
+
+                    <!-- blur edge -->
+                    <div class="absolute left-0 top-0 h-full w-40 bg-gradient-to-r from-[#D4E7D9] to-transparent z-10">
+                    </div>
+                    <div class="absolute right-0 top-0 h-full w-40 bg-gradient-to-l from-[#D4E7D9] to-transparent z-10">
+                    </div>
+
+                    <div class="flex whitespace-nowrap animate-article-marquee items-center">
+
+                        <div v-for="(article, i) in [...articles, ...articles]" :key="i"
+                            class="mx-8 w-[340px] h-[220px] rounded-2xl overflow-hidden relative group shadow-xl">
 
                             <img v-if="getArticleImages(article).length"
-                                :src="getImageUrl(getArticleImages(article)[0])" class="ticker-logo" />
+                                :src="getImageUrl(getArticleImages(article)[0])"
+                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" />
 
-                            <span class="ticker-sep">✦</span>
+                            <!-- glass overlay -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-70 group-hover:opacity-90 transition">
+                            </div>
+
+                            <!-- title -->
+                            <div
+                                class="absolute bottom-5 left-6 right-6 text-white text-sm  tracking-wide opacity-0 group-hover:opacity-100 transition">
+                                {{ article.title }}
+                            </div>
 
                         </div>
 
@@ -73,113 +114,118 @@
 
                 </div>
 
-            </div> -->
+                <div class="h-px bg-[#cbd5e1] opacity-30 mx-10" />
+
+            </div>
+
         </section>
 
-        <!-- ═══ ABOUT ═══ -->
-        <section class="py-24 px-10 grid grid-cols-[1fr_2fr] max-md:grid-cols-1 gap-20">
-            <p class="font-mono text-[0.65rem] tracking-[3px] uppercase text-[#6b6359] pt-1 reveal">Who We Are</p>
-            <div class="reveal">
-                <h2 class="font-serif text-[clamp(2rem,4vw,3.8rem)] leading-[1.1] tracking-[-0.02em]">
-                    Each <em class="italic text-[#c4788a]">strategy</em> is the perfect<br />
-                    combination of creativity and practicality.
-                </h2>
-                <p class="font-mono text-[0.82rem] leading-[1.9] text-[#6b6359] mt-6 max-w-xl">
-                    {{ introParagraph1 }}
-                </p>
-            </div>
-        </section>
+        <!-- section 3 -->
+        <section class="snap-start min-h-screen bg-[#5B3A68] py-20 px-10 relative overflow-hidden ">
 
-        <div class="h-px bg-[#c8c0b4] opacity-30 mx-10" />
-
-        <!-- ═══ BIG TYPE MARQUEE ═══ -->
-        <div class="py-14 overflow-hidden border-y border-[#c8c0b4]/20">
-            <div class="flex whitespace-nowrap animate-ticker" style="animation-duration:22s">
-                <span v-for="(word, i) in [...marqueeWords, ...marqueeWords]" :key="i"
-                    :class="i % 2 === 0 ? 'text-[#1a1714]' : '[-webkit-text-stroke:1px_#c8c0b4] [-webkit-text-fill-color:transparent]'"
-                    class="font-serif text-[clamp(3.5rem,8vw,8rem)] tracking-[-0.04em] leading-none px-10">
-                    {{ word }}
-                </span>
-            </div>
-        </div>
-
-        <!-- ═══ SOLUTIONS ═══ -->
-        <section class="bg-[#1a1714] py-20 px-10 relative overflow-hidden">
             <div
-                class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#c4788a]/10 rounded-full blur-[120px] pointer-events-none" />
+                class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#9C5F93]/20 rounded-full blur-[120px] pointer-events-none" />
 
             <div class="flex justify-between items-baseline mb-16 reveal">
-                <h2 class="font-serif text-[clamp(2rem,5vw,5rem)] text-[#f0ece3] leading-none tracking-[-0.03em]">
-                    New <span class="italic text-[#c4788a]">Arrivals</span><br />Solutions
+                <h2 class="font-serif text-[clamp(2rem,5vw,5rem)] text-[#f8fafc] leading-none tracking-[-0.03em]">
+                    New <span class="italic text-[#C4DEC8]">Solutions</span><br />
                 </h2>
-                <span class="font-mono text-[0.65rem] tracking-[2px] uppercase text-[#6b6359]">Our Offerings 2024</span>
             </div>
 
             <div class="grid grid-cols-3 max-md:grid-cols-1 gap-0.5">
+
                 <div v-for="(sol, i) in solutions" :key="sol.name"
-                    class="bg-[#221e1b] p-10 relative overflow-hidden group reveal transition-colors duration-300 hover:bg-[#2d2723]"
+                    class="bg-[#9C5F93] p-10 relative overflow-hidden group reveal transition-colors duration-300 hover:bg-[#7F4E78]"
                     :style="`transition-delay: ${i * 100}ms`">
-                    <div
-                        class="absolute bottom-0 left-0 h-0.5 w-0 bg-[#c4788a] group-hover:w-full transition-all duration-500" />
-
-                    <p class="font-mono text-[0.6rem] tracking-[3px] text-[#c4788a] mb-5">0{{ i + 1 }} —</p>
-                    <h3 class="font-serif text-[1.6rem] text-[#f0ece3] leading-[1.2] mb-4">{{ sol.name }}</h3>
-                    <p class="font-mono text-[0.75rem] text-[#7a7067] leading-[1.8]">{{ sol.desc }}</p>
 
                     <div
-                        class="mt-8 w-8 h-8 border border-[#3a342e] rounded-full flex items-center justify-center text-[#c8c0b4] text-sm group-hover:border-[#c4788a] group-hover:text-[#c4788a] group-hover:rotate-45 transition-all duration-300">
+                        class="absolute bottom-0 left-0 h-0.5 w-0 bg-[#80B77F] group-hover:w-full transition-all duration-500" />
+
+                    <p class="text-[0.6rem] tracking-[3px] text-[#8ec8ca] mb-5">0{{ i + 1 }} —</p>
+
+                    <h3 class="font-serif text-[1.6rem] text-[#f8fafc] leading-[1.2] mb-4">{{ sol.name }}</h3>
+
+                    <p class="text-[0.75rem] text-[#94a3b8] leading-[1.8]">{{ sol.desc }}</p>
+
+                    <div
+                        class="mt-8 w-8 h-8 border border-[#334155] rounded-full flex items-center justify-center text-[#94a3b8] text-sm group-hover:border-[#80B77F] group-hover:text-[#80B77F] group-hover:rotate-45 transition-all duration-300">
                         →
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- ═══ SKILLS ═══ -->
-        <section class="py-24 px-10">
+        <!-- section 4 -->
+        <section class="snap-start min-h-screen py-24 px-10 m-10">
+
             <div class="flex justify-between items-baseline mb-16 reveal">
                 <h2 class="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-none tracking-[-0.02em]">
-                    <em class="italic text-[#c4788a]">Skills</em>
+                    <em class="italic text-[#9C5F93]">Skills</em>
                 </h2>
-                <span class="font-mono text-[0.65rem] tracking-[2px] text-[#6b6359] uppercase">09 Specialties</span>
+
+                <span class=" text-[0.65rem] tracking-[2px] text-[#64748b] uppercase">
+                    09 Specialties
+                </span>
             </div>
 
-            <ul class="border-t border-[#c8c0b4]/20">
+            <ul class="border-t border-[#cbd5e1]/20">
+
                 <li v-for="(skill, i) in skills" :key="skill.name"
-                    class="border-b border-[#c8c0b4]/20 flex justify-between items-center py-5 relative overflow-hidden group reveal cursor-none transition-all duration-300 hover:pl-5"
+                    class="border-b border-[#cbd5e1]/20 flex justify-between items-center py-5 relative overflow-hidden group reveal cursor-none transition-all duration-300 hover:pl-5"
                     :style="`transition-delay: ${i * 50}ms`">
+
                     <div
-                        class="absolute inset-0 bg-[#e8cdd3] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500" />
+                        class="absolute inset-0 bg-[#C4DEC8] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500" />
+
                     <span
-                        class="font-serif text-[clamp(1.2rem,2.5vw,2rem)] relative z-10 group-hover:text-[#8b3a50] transition-colors duration-300">{{
-                            skill.name }}</span>
+                        class="font-serif text-[clamp(1.2rem,2.5vw,2rem)] relative z-10 group-hover:text-[#5B3A68] transition-colors duration-300">
+                        {{ skill.name }}
+                    </span>
+
                     <span
-                        class="font-mono text-[0.65rem] tracking-[2px] uppercase text-[#6b6359] relative z-10 group-hover:text-[#c4788a] transition-colors duration-300">{{
-                            skill.tag }}</span>
+                        class=" text-[0.65rem] tracking-[2px] uppercase text-[#64748b] relative z-10 group-hover:text-[#08979d] transition-colors duration-300">
+                        {{ skill.tag }}
+                    </span>
+
                 </li>
+
             </ul>
+
         </section>
 
-        <!-- ═══ CTA ═══ -->
+        <!-- section 5 -->
         <section
-            class="bg-[#c4788a] py-28 px-10 grid grid-cols-2 max-md:grid-cols-1 gap-20 items-center relative overflow-hidden">
-            <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#8b3a50] rounded-full opacity-25 blur-[80px]" />
-            <h2 class="font-serif text-[clamp(3rem,7vw,7rem)] text-[#f0ece3] leading-[0.9] tracking-[-0.04em] reveal">
+            class="snap-start min-h-screen bg-[#80B77F] py-28 px-10 grid grid-cols-2 max-md:grid-cols-1 gap-20 items-center relative overflow-hidden">
+
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#9C5F93] rounded-full opacity-25 blur-[80px]" />
+
+            <h2 class="font-serif text-[clamp(3rem,7vw,7rem)] text-[#f8fafc] leading-[0.9] tracking-[-0.04em] reveal">
                 Let's<br />Work<br /><em class="italic opacity-60">Together</em>
             </h2>
+
             <div class="relative z-10 reveal">
-                <p class="font-mono text-[0.82rem] leading-[1.9] text-[#f0ece3]/80 mb-10">
-                    Have a project in mind? Let's build something amazing together. We design modern digital experiences
+
+                <p class="text-[0.82rem] leading-[1.9] text-[#f8fafc]/80 mb-10">
+                    Have a project in mind? Let's build something amazing together. We design modern digital
+                    experiences
                     powered by intelligent systems.
                 </p>
+
                 <NuxtLink to="/contact"
-                    class="inline-block bg-[#f0ece3] text-[#1a1714] px-9 py-4 font-bold text-[0.75rem] tracking-[2px] uppercase no-underline hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_#8b3a50] transition-all duration-200">
+                    class="inline-block bg-[#f8fafc] text-[#0f172a] px-9 py-4 font-bold text-[0.75rem] tracking-[2px] uppercase no-underline hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_#065f62] transition-all duration-200">
                     Get In Touch
                 </NuxtLink>
-            </div>
-        </section>
 
-        <!-- FOOTER -->
-        <Footer />
+            </div>
+
+        </section>
+        <div class="snap-start">
+            <Footer />
+        </div>
+
     </div>
 </template>
 
@@ -376,6 +422,24 @@ onUnmounted(() => {
 /* Google Fonts */
 /* @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700;800&family=Courier+Prime:ital@0;1&display=swap'); */
 /* Ticker container */
+body {
+    font-family: 'Sora', sans-serif;
+}
+
+@keyframes articleMarquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-article-marquee {
+    animation: articleMarquee 35s linear infinite;
+}
+
 .ticker-wrapper {
     height: 80px;
     background: #14110f;
@@ -468,13 +532,29 @@ onUnmounted(() => {
     }
 }
 
+.feature-card {
+    border-radius: 30px;
+    padding: 40px;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin-top: 10px;
+}
+
 /* 
 .font-serif {
     font-family: 'DM Serif Display', serif;
 } */
 
-.font-mono {
+/* .font-mono {
     font-family: 'Courier Prime', monospace;
+} */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    scroll-snap-type: y mandatory;
 }
 
 /* Reveal */

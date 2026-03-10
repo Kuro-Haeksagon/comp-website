@@ -1,18 +1,19 @@
 <template>
   <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-10 py-6">
-    <span class="font-serif text-base tracking-wide opacity-0 animate-fadeUp">
+  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-10 py-6 bg-[#f0ece3] opacity-100">
+
+    <span class="font-serif text-base tracking-wide animate-fadeUp">
       Kuro Haeksagon
     </span>
-    <ul class="flex gap-8 list-none opacity-0 animate-fadeUp animation-delay-200">
+
+    <ul class="flex gap-8 list-none animate-fadeUp animation-delay-200">
       <li v-for="link in navLinks" :key="link.label">
         <NuxtLink :to="link.to"
-          class="font-mono text-[0.65rem] tracking-[3px] uppercase text-[#6b6359] hover:text-[#1a1714] transition-colors no-underline">
+          class="font-mono text-[0.65rem] tracking-[3px] uppercase text-[#1a1714] hover:text-black transition-colors no-underline">
           {{ link.label }}
         </NuxtLink>
       </li>
     </ul>
-    ```
 
   </nav>
 </template>

@@ -5,15 +5,12 @@
 
         <main>
 
-            <!-- HERO -->
             <section ref="hero" class="hero-section">
 
-                <!-- background glow -->
                 <div class="hero-bg-glow"></div>
 
                 <div class="hero-container">
 
-                    <!-- LEFT -->
                     <div ref="heroContent" class="hero-left">
 
                         <h1 class="hero-title">
@@ -38,7 +35,6 @@
 
                     </div>
 
-                    <!-- RIGHT -->
                     <div class="hero-right">
 
                         <div class="hero-image-wrap">
@@ -56,7 +52,6 @@
 
             </section>
 
-            <!-- SOLUTIONS -->
             <section ref="solutions" class="py-32 px-6 bg-gray-50 relative">
                 <div class="max-w-6xl mx-auto">
 
@@ -72,7 +67,6 @@
 
                     <div class="grid md:grid-cols-2 gap-16 items-start">
 
-                        <!-- LEFT COLUMN -->
                         <div>
                             <p class="text-gray-600 leading-relaxed mb-8">
                                 {{ introParagraph1 }}
@@ -96,7 +90,6 @@
                             </div>
                         </div>
 
-                        <!-- RIGHT COLUMN -->
                         <div class="feature-card">
                             <img src="~/assets/features.png" class="max-h-full object-contain animate-float" />
                         </div>
@@ -118,7 +111,6 @@
                 </div>
             </section>
 
-            <!-- Latest Articles -->
             <section class="py-28 px-6 bg-gray-50">
 
                 <div class="max-w-6xl mx-auto">
@@ -132,28 +124,23 @@
                         </p>
                     </div>
 
-                    <!-- Loading -->
                     <div v-if="loading" class="text-center py-10">
-                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-400"></div>
+                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#08979d]"></div>
                         <p class="mt-3 text-gray-500">Loading articles...</p>
                     </div>
 
-                    <!-- Articles -->
                     <div v-else-if="articles.length > 0" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
 
                         <article v-for="article in articles.slice(0, 3)" :key="article.id"
                             class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition duration-300 group">
 
-                            <!-- Image -->
                             <div v-if="getArticleImages(article) && getArticleImages(article).length > 0"
                                 class="h-48 overflow-hidden">
                                 <img :src="getImageUrl(getArticleImages(article)[currentImageIndex[article.id] || 0])"
                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-
                             </div>
 
                             <div class="p-6">
-
                                 <h3 class="text-lg font-semibold mb-3 line-clamp-2">
                                     {{ article.title }}
                                 </h3>
@@ -163,30 +150,18 @@
                                 </p>
 
                                 <div class="flex justify-between items-center text-sm">
-
                                     <span class="text-gray-400">
                                         {{ formatDate(article.created_at) }}
                                     </span>
-
                                     <NuxtLink :to="`/articles/${article.id}`"
-                                        class="text-yellow-500 font-medium hover:text-yellow-600">
+                                        class="text-[#08979d] font-medium hover:text-[#065f62]">
                                         Read More →
                                     </NuxtLink>
-
                                 </div>
-
                             </div>
-
                         </article>
-
                     </div>
 
-                    <!-- Empty -->
-                    <div v-else class="text-center text-gray-500 py-10">
-                        Articles will be published soon.
-                    </div>
-
-                    <!-- Button -->
                     <div class="text-center">
                         <NuxtLink to="/articles" class="btn-primary">
                             View All Articles
@@ -197,90 +172,59 @@
 
             </section>
 
-            <!-- Trusted Companies -->
             <section class="py-28 bg-white">
-
                 <div class="max-w-6xl mx-auto text-center">
-
                     <h2 class="section-title mb-4">
                         Trusted by Leading Companies
                     </h2>
-
                     <p class="text-gray-500 mb-16">
                         We're proud to partner with innovative organizations
                     </p>
-
-                    <!-- Loading -->
                     <div v-if="companiesLoading" class="py-10">
-                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-400"></div>
+                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#08979d]"></div>
                     </div>
-
-                    <!-- Companies -->
                     <div v-else-if="trustedCompanies.length" class="flex flex-wrap justify-center gap-12 items-center">
-
                         <a v-for="company in trustedCompanies" :key="company.id" :href="company.website" target="_blank"
                             class="opacity-70 hover:opacity-100 transition">
-
                             <img :src="getCompanyLogoUrl(company.logo_url)" :alt="company.name"
                                 class="h-10 object-contain" />
-
                         </a>
-
                     </div>
-
-                    <!-- Empty -->
-                    <div v-else class="text-gray-400">
-                        Our partners will appear here soon.
-                    </div>
-
                 </div>
-
             </section>
 
-            <!-- Contact CTA -->
             <section class="relative py-36 text-inherit overflow-hidden">
                 <div class="hero-bg-glow"></div>
-                <!-- background grid -->
                 <div
-                    class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]">
+                    class="absolute inset-0 bg-[linear-gradient(rgba(8,151,157,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(8,151,157,0.03)_1px,transparent_1px)] bg-[size:40px_40px]">
                 </div>
 
-                <!-- glow -->
                 <div
-                    class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-yellow-400/10 blur-[140px] rounded-full">
+                    class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#08979d]/10 blur-[140px] rounded-full">
                 </div>
                 <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-400/10 blur-[120px] rounded-full">
                 </div>
 
                 <div class="relative max-w-4xl mx-auto text-center px-6">
-
                     <h2 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
                         Let's Work Together
                     </h2>
-
                     <p class="text-gray-400 mb-12 text-lg max-w-2xl mx-auto">
                         Have a project in mind? Let's build something amazing together.
                         We design and develop modern digital experiences.
                     </p>
-
-                    <!-- buttons -->
                     <div class="flex flex-col sm:flex-row justify-center gap-6">
-
-                        <NuxtLink to="/contact" class="px-8 py-4 rounded-xl bg-yellow-600 text-black font-semibold
-        hover:scale-105 hover:shadow-[0_0_40px_rgba(250,204,21,0.6)]
+                        <NuxtLink to="/contact" class="px-8 py-4 rounded-xl bg-[#08979d] text-white font-semibold
+        hover:scale-105 hover:shadow-[0_0_40px_rgba(8,151,157,0.4)]
         transition-all duration-300">
-
                             Get In Touch
                         </NuxtLink>
-
-                        <a href="mailto:hello@kurohaeksagon.com" class="px-8 py-4 rounded-xl border border-yellow-400 text-yellow-800
-        hover:bg-yellow-400 hover:text-black
+                        <a href="mailto:hello@kurohaeksagon.com" class="px-8 py-4 rounded-xl border border-[#08979d] text-[#08979d]
+        hover:bg-[#08979d] hover:text-white
         hover:scale-105
         transition-all duration-300">
-
                             Send Email
                         </a>
-
                     </div>
                 </div>
             </section>
@@ -620,10 +564,10 @@ onUnmounted(() => {
 </script>
 
 
-
 <style scoped>
+/* TYPOGRAPHY */
 .hero-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
     line-height: 1.1;
     color: #111827;
@@ -633,9 +577,7 @@ onUnmounted(() => {
     font-size: 1.2rem;
     color: #6b7280;
     margin-top: 1.5rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 600px;
 }
 
 .section-title {
@@ -644,78 +586,57 @@ onUnmounted(() => {
     color: #111827;
 }
 
+/* BUTTONS */
 .btn-primary {
-    background: #facc15;
-    color: #111827;
+    background: #08979d;
+    color: white;
     padding: 16px 36px;
     border-radius: 14px;
     font-weight: 600;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .btn-primary:hover {
-    background: #eab308;
+    background: #067a7f;
     transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(8, 151, 157, 0.2);
 }
 
 .btn-outline {
-    border: 2px solid #facc15;
-    color: #111827;
+    border: 2px solid #08979d;
+    color: #08979d;
     padding: 16px 36px;
     border-radius: 14px;
     font-weight: 600;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .btn-outline:hover {
-    background: #fef9c3;
+    background: rgba(8, 151, 157, 0.05);
+    transform: translateY(-3px);
 }
 
+/* CARDS */
 .solution-card {
     background: white;
     padding: 28px;
     border-radius: 20px;
     border: 1px solid #f3f4f6;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .solution-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    border-color: #08979d;
 }
 
 .solution-heading {
     font-weight: 600;
     margin-bottom: 10px;
-    color: #92400e;
-}
-
-.skill-card {
-    opacity: 1 !important;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-
-.skill-card {
-    background: white;
-    border: 1px solid #fde68a;
-    padding: 14px;
-    border-radius: 14px;
-    text-align: center;
-    color: #92400e;
-    transition: 0.3s;
-}
-
-.skill-card:hover {
-    background: #fef9c3;
-    transform: translateY(-4px);
+    color: #08979d;
 }
 
 .feature-card {
@@ -726,147 +647,103 @@ onUnmounted(() => {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
 }
 
-.cta-blob {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: #facc15;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.25;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -200px;
+/* SKILLS GRID */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.animate-float {
-    animation: float 5s ease-in-out infinite;
+.skill-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    color: #374151;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-/* HERO SECTION */
+.skill-card:hover {
+    border-color: #08979d;
+    color: #08979d;
+    background: #f0f9f9;
+    transform: translateY(-3px);
+}
 
+/* HERO LAYOUT & ANIMATION */
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     overflow: hidden;
     background: white;
 }
 
-/* container */
-
 .hero-container {
-    max-width: 1400px;
+    max-width: 1280px;
     margin: auto;
     width: 100%;
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: 80px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
     padding: 0 40px;
     align-items: center;
     position: relative;
     z-index: 2;
 }
 
-/* LEFT */
-
-.hero-left {
-    max-width: 520px;
-}
-
-.hero-eyebrow {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #9ca3af;
-}
-
 .hero-buttons {
     display: flex;
-    gap: 20px;
-    margin-top: 36px;
+    gap: 16px;
+    margin-top: 2rem;
 }
-
-/* RIGHT IMAGE */
 
 .hero-right {
-    position: relative;
     display: flex;
     justify-content: center;
-}
-
-.hero-image-wrap {
     position: relative;
 }
 
 .hero-image {
-    width: 520px;
-    max-width: none;
-    animation: float 6s ease-in-out infinite;
+    width: 100%;
+    max-width: 500px;
     position: relative;
     z-index: 2;
 }
 
-/* circles behind image */
-
+/* DECORATIVE ELEMENTS (GLOW) */
 .hero-circle {
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(250, 204, 21, 0.25), transparent 70%);
-    top: -80px;
-    left: -80px;
+    background: radial-gradient(circle, rgba(8, 151, 157, 0.15), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
 }
 
-.hero-circle-2 {
-    width: 400px;
-    height: 400px;
-    top: 120px;
-    left: 120px;
-    opacity: 0.4;
-}
-
-/* background glow */
-
 .hero-bg-glow {
     position: absolute;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(10, 35, 135, 0.15), transparent 70%);
-    top: -200px;
-    left: -200px;
-    filter: blur(80px);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(8, 151, 157, 0.08), transparent 70%);
+    top: -150px;
+    left: -150px;
+    filter: blur(60px);
 }
 
-/* responsive */
-
-@media (max-width: 900px) {
-
-    .hero-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 60px;
-    }
-
-    .hero-left {
-        margin: auto;
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
-    .hero-image {
-        width: 360px;
-    }
-
+/* UTILS */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
 }
 
-
-/* Floating animation */
 @keyframes float {
 
     0%,
@@ -876,6 +753,37 @@ onUnmounted(() => {
 
     50% {
         transform: translateY(-20px);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 60px;
+    }
+
+    .hero-left {
+        margin: auto;
+    }
+
+    .hero-subtitle {
+        margin: 1.5rem auto 0;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-image {
+        max-width: 320px;
     }
 }
 </style>
