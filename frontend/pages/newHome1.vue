@@ -73,51 +73,38 @@
 
         </section>
 
-        <!-- marquee articles -->
-        <section class="snap-start min-h-screen flex items-center">
+        <!-- ULTRA AI ARTICLES MARQUEE -->
+        <section class="snap-start min-h-screen flex flex-col items-center justify-center bg-[#f9ddfc] overflow-hidden">
 
-            <div class="w-full overflow-hidden">
+            <div class="text-center mt-10 ">
 
-                <div class="h-px bg-[#cbd5e1] opacity-30 mx-10" />
+                <p class="italic text-[0.8rem] tracking-[6px] uppercase text-[#f6f7f8] mb-3">
+                    Latest
+                </p>
 
-                <div class="py-16 relative">
+                <h2 class="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-[#58c0bc]">
+                    Articles
+                </h2>
 
-                    <!-- blur edge -->
-                    <div class="absolute left-0 top-0 h-full w-40 bg-gradient-to-r from-[#D4E7D9] to-transparent z-10">
-                    </div>
-                    <div class="absolute right-0 top-0 h-full w-40 bg-gradient-to-l from-[#D4E7D9] to-transparent z-10">
-                    </div>
+                <div class="w-20 h-[2px] bg-[#300431] mx-auto mt-4"></div>
 
-                    <div class="flex whitespace-nowrap animate-article-marquee items-center">
+            </div>
 
-                        <div v-for="(article, i) in [...articles, ...articles]" :key="i"
-                            class="mx-8 w-[340px] h-[220px] rounded-2xl overflow-hidden relative group shadow-xl">
+            <!-- CAROUSEL -->
+            <div class="focus-stage mt-10">
 
-                            <img v-if="getArticleImages(article).length"
-                                :src="getImageUrl(getArticleImages(article)[0])"
-                                class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" />
+                <div v-for="(article, i) in articles.slice(0, 4)" :key="i"
+                    :class="['focus-card', 'pos-' + ((i - activeIndex + 4) % 4)]">
 
-                            <!-- glass overlay -->
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-70 group-hover:opacity-90 transition">
-                            </div>
+                    <img :src="getImageUrl(getArticleImages(article)[0])" />
 
-                            <!-- title -->
-                            <div
-                                class="absolute bottom-5 left-6 right-6 text-white text-sm  tracking-wide opacity-0 group-hover:opacity-100 transition">
-                                {{ article.title }}
-                            </div>
-
-                        </div>
-
+                    <div class="focus-overlay">
+                        <h3>{{ article.title }}</h3>
                     </div>
 
                 </div>
 
-                <div class="h-px bg-[#cbd5e1] opacity-30 mx-10" />
-
             </div>
-
         </section>
 
         <!-- section 3 -->
@@ -126,7 +113,7 @@
             <div
                 class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#9C5F93]/20 rounded-full blur-[120px] pointer-events-none" />
 
-            <div class="flex justify-between items-baseline mb-16 reveal">
+            <div class="flex justify-between items-baseline mb-16 reveal  mt-10">
                 <h2 class="font-serif text-[clamp(2rem,5vw,5rem)] text-[#f8fafc] leading-none tracking-[-0.03em]">
                     New <span class="italic text-[#C4DEC8]">Solutions</span><br />
                 </h2>
@@ -155,7 +142,32 @@
                 </div>
 
             </div>
+            <div class="text-center mb-16  mt-10">
+                <p class="italic text-[0.75rem] tracking-[6px] uppercase text-[#e4d3ef] mb-3">
+                    Trusted by
+                </p>
 
+                <h2 class="font-serif text-[clamp(2rem,4vw,3rem)] text-[#c4ffe1]">
+                    Leading Companies
+                </h2>
+
+                <div class="w-20 h-[2px] bg-[#80B77F] mx-auto mt-4"></div>
+
+            </div>
+            <div v-if="companies.length">
+                <Swiper :modules="modules" :slides-per-view="'auto'" :space-between="80" :loop="true" :speed="16000"
+                    :loop-additional-slides="20" :free-mode="true" :free-mode-momentum="false" :allow-touch-move="false"
+                    :autoplay="{
+                        delay: 1,
+                        disableOnInteraction: false
+                    }" class="company-swiper">
+                    <SwiperSlide v-for="(company, i) in duplicatedCompanies" :key="i" class="company-slide">
+                        <a :href="company.website" target="_blank">
+                            <img :src="getImageUrl(company.logo_url)" :alt="company.name" class="company-logo" />
+                        </a>
+                    </SwiperSlide>
+                </Swiper>
+            </div>
         </section>
 
         <!-- section 4 -->
@@ -230,26 +242,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import API from "../functions/API"
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Autoplay, FreeMode } from 'swiper/modules'
 
+import 'swiper/css'
+import 'swiper/css/free-mode'
+
+const modules = [Autoplay, FreeMode]
 const heroTitle = 'Kuro Haeksagon'
+const activeIndex = ref(0)
+const companies = ref([])
 
 // ── HERO ──
 const heroDescription =
     'A forward-thinking AI & Software Solution Company. We transform businesses through intelligent systems, automation, and modern digital experiences.'
 
-// ── TICKER ──
-const tickerItems = [
-    'AI Solutions', 'Software Integration', 'ERP Modules',
-    'Cloud Platform', 'Generative AI', 'Computer Vision',
-    'N8N Automation', 'Odoo Solutions',
-]
-
-// ── MARQUEE ──
-const marqueeWords = ['Kuro Haeksagon', 'Automation', 'AI Solutions', 'Innovation']
 
 const introParagraph1 =
     'Kuro Haeksagon is a forward-thinking technology solutions provider committed to driving business transformation through intelligent software systems. Our core mission is to help organizations optimize their operations, unlock data-driven insights, and accelerate growth with practical, scalable tools. We specialize in three key areas:'
@@ -287,9 +298,8 @@ const skills = [
 const articles = ref([])
 const loading = ref(false)
 
-const currentImageIndex = ref({})
-const slideshowIntervals = ref({})
-
+// ── SCROLL REVEAL ──
+let revealObserver = null
 
 // ── CURSOR ──
 const cursor = ref(null)
@@ -357,44 +367,24 @@ const getArticleImages = (article) => {
     }
 
 }
+const fetchCompanies = async () => {
+    try {
+        const res = await API.getCompanies()
+        companies.value = res?.data || res || []
+    } catch (err) {
+        console.error("โหลดบริษัทไม่สำเร็จ", err)
+        companies.value = []
+    }
+}
 const config = useRuntimeConfig()
 const apiBase = config.public?.apiBase || ""
-const startImageSlideshow = (articleId) => {
 
-    const article = articles.value.find(a => a?.id === articleId)
-
-    if (!article) return
-
-    const images = getArticleImages(article)
-
-    if (!images || images.length <= 1) return
-
-    if (currentImageIndex.value[articleId] === undefined) {
-        currentImageIndex.value[articleId] = 0
-    }
-
-    if (slideshowIntervals.value[articleId]) {
-        clearInterval(slideshowIntervals.value[articleId])
-    }
-
-    slideshowIntervals.value[articleId] = setInterval(() => {
-
-        currentImageIndex.value[articleId] =
-            (currentImageIndex.value[articleId] + 1) % images.length
-
-    }, 2500)
-
-}
-
-// ── SCROLL REVEAL ──
-let revealObserver = null
 
 onMounted(async () => {
-
     await Promise.all([
         fetchArticles(),
+        fetchCompanies()
     ])
-
     window.addEventListener('mousemove', onMove)
     animateRing()
 
@@ -409,6 +399,23 @@ onMounted(async () => {
     )
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el))
+    setInterval(() => {
+
+        if (!articles.value.length) return
+
+        activeIndex.value =
+            (activeIndex.value + 1) % articles.value.length
+
+    }, 3000)
+
+})
+const duplicatedCompanies = computed(() => {
+    return [
+        ...companies.value,
+        ...companies.value,
+        ...companies.value,
+        ...companies.value
+    ]
 })
 
 onUnmounted(() => {
@@ -419,107 +426,123 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Google Fonts */
-/* @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700;800&family=Courier+Prime:ital@0;1&display=swap'); */
-/* Ticker container */
 body {
     font-family: 'Sora', sans-serif;
 }
 
-@keyframes articleMarquee {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.animate-article-marquee {
-    animation: articleMarquee 35s linear infinite;
-}
-
-.ticker-wrapper {
-    height: 80px;
-    background: #14110f;
-    display: flex;
-    align-items: center;
+.company-marquee {
+    width: 100%;
     overflow: hidden;
     position: relative;
 }
 
-/* fade edge */
-.ticker-wrapper::before,
-.ticker-wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 120px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.ticker-wrapper::before {
-    left: 0;
-    background: linear-gradient(to right, #14110f, transparent);
-}
-
-.ticker-wrapper::after {
-    right: 0;
-    background: linear-gradient(to left, #14110f, transparent);
-}
-
-.ticker {
+.company-swiper {
     width: 100%;
-    overflow: hidden;
 }
 
-.ticker-track {
-    display: flex;
-    width: max-content;
-    animation: ticker-scroll 35s linear infinite;
-    align-items: center;
-}
-
-.ticker-item {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    padding: 0 50px;
-}
-
-.ticker-logo {
-    height: 38px;
+.company-slide {
     width: auto;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-logo {
+    height: 50px;
+    width: auto;
+    min-width: 80px;
     object-fit: contain;
-    opacity: .9;
-    filter: grayscale(1);
-    transition: all .3s ease;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.35s ease;
 }
 
-.ticker-logo:hover {
+.company-logo:hover {
+    filter: grayscale(0%);
     opacity: 1;
-    filter: none;
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
-.ticker-sep {
-    color: #e5c8d1;
-    font-size: 18px;
+:deep(.swiper-wrapper) {
+    transition-timing-function: linear !important;
+}
+
+/* Articles */
+.focus-stage {
+    width: 1000px;
+    height: 650px;
+    position: relative;
+}
+
+/* base card */
+.focus-card {
+    position: absolute;
+    width: 340px;
+    height: 240px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .15);
+    transition: all .6s cubic-bezier(.22, 1, .36, 1);
+}
+
+.focus-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TOP (MAIN CARD) */
+.pos-0 {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%) scale(1.2);
+    z-index: 10;
+}
+
+/* LEFT */
+.pos-1 {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) scale(.85);
     opacity: .6;
+    filter: blur(2px);
 }
 
-@keyframes ticker-scroll {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
+/* RIGHT */
+.pos-2 {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) scale(.85);
+    opacity: .6;
+    filter: blur(2px);
 }
+
+/* BOTTOM */
+.pos-3 {
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) scale(.85);
+    opacity: .6;
+    filter: blur(2px);
+}
+
+/* overlay */
+.focus-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 18px;
+    background: linear-gradient(to top, rgba(0, 0, 0, .7), transparent);
+}
+
+.focus-overlay h3 {
+    color: white;
+    font-size: .9rem;
+}
+
+
 
 /* Smooth animation */
 @keyframes tickerMove {
@@ -541,21 +564,10 @@ body {
     margin-top: 10px;
 }
 
-/* 
-.font-serif {
-    font-family: 'DM Serif Display', serif;
-} */
-
-/* .font-mono {
-    font-family: 'Courier Prime', monospace;
-} */
 html {
     scroll-behavior: smooth;
 }
 
-body {
-    scroll-snap-type: y mandatory;
-}
 
 /* Reveal */
 .reveal {
