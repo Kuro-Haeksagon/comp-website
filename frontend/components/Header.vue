@@ -1,61 +1,112 @@
 <template>
-  <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-10 py-6 bg-[#f0ece3] opacity-100">
+  <nav :class="[
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+    scrolled
+      ? 'bg-[#0B0E2A] border-b border-white/10 py-4'
+      : 'bg-gradient-to-b from-[#0B0E2A] to-transparent py-6'
+  ]">
+    <div class="flex justify-between items-center px-10">
 
-    <span class="font-serif text-base tracking-wide animate-fadeUp">
-      Kuro Haeksagon
-    </span>
+      <!-- LOGO -->
+      <NuxtLink to="/" class="font-serif text-lg tracking-wide text-white relative group cursor-pointer">
+        Kuro Haeksagon
 
-    <ul class="flex gap-8 list-none animate-fadeUp animation-delay-200">
-      <li v-for="link in navLinks" :key="link.label">
-        <NuxtLink :to="link.to"
-          class="font-mono text-[0.65rem] tracking-[3px] uppercase text-[#1a1714] hover:text-black transition-colors no-underline">
-          {{ link.label }}
-        </NuxtLink>
-      </li>
-    </ul>
+        <span class="absolute left-0 -bottom-1 h-[2px] w-0
+    bg-gradient-to-r from-[#7B5CFF] to-[#FF6EC7]
+    transition-all duration-500 group-hover:w-full"></span>
+
+      </NuxtLink>
+
+      <!-- DESKTOP MENU -->
+      <ul class="hidden md:flex gap-10 list-none">
+
+        <li v-for="link in navLinks" :key="link.label">
+
+          <NuxtLink :to="link.to"
+            class="relative font-mono text-[0.7rem] tracking-[3px] uppercase transition-all duration-300 group"
+            :class="active === link.section ? 'text-white' : 'text-[#9CA3AF]'">
+            {{ link.label }}
+
+            <span class="absolute left-0 -bottom-1 h-[2px]
+              bg-gradient-to-r from-[#7B5CFF] to-[#FF6EC7]
+              transition-all duration-300"
+              :class="active === link.section ? 'w-full' : 'w-0 group-hover:w-full'"></span>
+          </NuxtLink>
+
+        </li>
+
+      </ul>
+
+      <!-- MOBILE BUTTON -->
+      <button class="md:hidden text-white" @click="mobileOpen = !mobileOpen">
+        ☰
+      </button>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div v-if="mobileOpen" class="md:hidden bg-[#0B0E2A]/95 backdrop-blur-xl border-t border-white/10">
+      <ul class="flex flex-col items-center gap-8 py-10">
+
+        <li v-for="link in navLinks" :key="link.label">
+
+          <NuxtLink :to="link.to" class="font-mono text-xs tracking-[3px] uppercase text-white"
+            @click="mobileOpen = false">
+            {{ link.label }}
+          </NuxtLink>
+
+        </li>
+
+      </ul>
+    </div>
 
   </nav>
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from "vue"
+
+const mobileOpen = ref(false)
+const scrolled = ref(false)
+const active = ref("")
+
 const navLinks = [
-  { label: 'Solutions', to: '/#solutions' },
-  { label: 'Articles', to: '/articles' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+  { label: "Articles", to: "/articles", section: "articles" },
+  { label: "About", to: "/about", section: "about" },
+  { label: "Contact", to: "/contact", section: "contact" }
 ]
+
+const handleScroll = () => {
+  scrolled.value = window.scrollY > 40
+
+  const sections = document.querySelectorAll("section")
+
+  sections.forEach((section) => {
+    const rect = section.getBoundingClientRect()
+
+    if (rect.top <= 200 && rect.bottom >= 200) {
+      active.value = section.id
+    }
+  })
+}
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll)
+})
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;700;800&family=Courier+Prime:ital@0;1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Courier+Prime&display=swap");
 
 .font-serif {
-  font-family: 'DM Serif Display', serif;
+  font-family: "DM Serif Display", serif;
 }
 
 .font-mono {
-  font-family: 'Courier Prime', monospace;
-}
-
-/* animations */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeUp {
-  animation: fadeUp 0.8s forwards;
-}
-
-.animation-delay-200 {
-  animation-delay: 0.2s;
+  font-family: "Courier Prime", monospace;
 }
 </style>

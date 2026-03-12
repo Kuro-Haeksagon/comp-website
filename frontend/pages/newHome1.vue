@@ -1,16 +1,17 @@
 <template>
     <div
-        class="bg-[#D4E7D9] text-[#2E3A34] overflow-x-hidden cursor-none snap-y snap-mandatory h-screen overflow-y-scroll">
+        class="bg-[#0B0E2A] text-[#F1F5FF] overflow-x-hidden cursor-none snap-y snap-mandatory h-screen overflow-y-scroll">
 
         <div ref="cursor"
-            class="fixed w-3 h-3 bg-[#80B77F] rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 mix-blend-multiply" />
+            class="fixed w-3 h-3 bg-[#80B77F] rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 " />
         <div ref="cursorRing"
             class="fixed w-10 h-10 border border-[#80B77F] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 opacity-40 transition-[width,height] duration-300" />
 
         <Header />
 
         <!-- section 1 -->
-        <section class="snap-start min-h-screen grid grid-cols-2 max-md:grid-cols-1 overflow-hidden ">
+        <section class="snap-start min-h-screen grid grid-cols-2 max-md:grid-cols-1 overflow-hidden
+bg-gradient-to-br from-[#0B0E2A] via-[#1A1448] to-[#2C1F6B]">
 
             <div class="pt-36 pb-16 px-12 flex flex-col justify-between relative z-10 m-10">
                 <div>
@@ -30,9 +31,10 @@
                 </div>
 
                 <div class="flex items-center gap-5 flex-wrap">
-                    <NuxtLink to="/about" class="relative bg-[#5B3A68] text-white px-8 py-3.5 font-bold text-[0.75rem] tracking-[2px] uppercase no-underline
-        after:content-[''] after:absolute after:-bottom-1 after:-right-1 after:w-full after:h-full after:border after:border-[#5B3A68]
-        hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-200">
+                    <NuxtLink to="/about" class="relative px-8 py-3.5 font-bold text-[0.75rem] tracking-[2px] uppercase
+text-white rounded-full
+bg-gradient-to-r from-[#156845] to-[#FF6EC7]
+hover:scale-105 transition-all duration-300 shadow-lg shadow-[#7B5CFF]/30">
                         Our Solutions
                     </NuxtLink>
 
@@ -43,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="relative bg-[#C4DEC8] overflow-hidden max-md:h-[50vh] flex items-center justify-center">
+            <div class="relative bg-[#14123a] overflow-hidden max-md:h-[50vh] flex items-center justify-center">
                 <img src="~/assets/bot-logo-kh.png" alt="AI Bot"
                     class="max-h-[70%] object-contain animate-float drop-shadow-2xl relative z-10" />
             </div>
@@ -74,7 +76,8 @@
         </section>
 
         <!-- ULTRA AI ARTICLES MARQUEE -->
-        <section class="snap-start min-h-screen flex flex-col items-center justify-center bg-[#f9ddfc] overflow-hidden">
+        <section class="snap-start min-h-screen flex flex-col items-center justify-center
+bg-gradient-to-b from-[#0B0E2A] to-[#1F1A4D] overflow-hidden">
 
             <div class="text-center mt-10 ">
 
@@ -82,7 +85,7 @@
                     Latest
                 </p>
 
-                <h2 class="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-[#58c0bc]">
+                <h2 class="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-[#FF6EC7]">
                     Articles
                 </h2>
 
@@ -108,14 +111,15 @@
         </section>
 
         <!-- section 3 -->
-        <section class="snap-start min-h-screen bg-[#5B3A68] py-20 px-10 relative overflow-hidden ">
+        <section class="snap-start min-h-screen py-20 px-10 relative overflow-hidden
+bg-gradient-to-b from-[#1A1448] to-[#0B0E2A]">
 
             <div
                 class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#9C5F93]/20 rounded-full blur-[120px] pointer-events-none" />
 
             <div class="flex justify-between items-baseline mb-16 reveal  mt-10">
                 <h2 class="font-serif text-[clamp(2rem,5vw,5rem)] text-[#f8fafc] leading-none tracking-[-0.03em]">
-                    New <span class="italic text-[#C4DEC8]">Solutions</span><br />
+                    New <span class="italic text-[#0a5035]">Solutions</span><br />
                 </h2>
             </div>
 
@@ -126,7 +130,7 @@
                     :style="`transition-delay: ${i * 100}ms`">
 
                     <div
-                        class="absolute bottom-0 left-0 h-0.5 w-0 bg-[#80B77F] group-hover:w-full transition-all duration-500" />
+                        class="absolute bottom-0 left-0 h-0.5 w-0 bg-[#7B5CFF] group-hover:w-full transition-all duration-500" />
 
                     <p class="text-[0.6rem] tracking-[3px] text-[#8ec8ca] mb-5">0{{ i + 1 }} —</p>
 
@@ -135,7 +139,7 @@
                     <p class="text-[0.75rem] text-[#94a3b8] leading-[1.8]">{{ sol.desc }}</p>
 
                     <div
-                        class="mt-8 w-8 h-8 border border-[#334155] rounded-full flex items-center justify-center text-[#94a3b8] text-sm group-hover:border-[#80B77F] group-hover:text-[#80B77F] group-hover:rotate-45 transition-all duration-300">
+                        class="mt-8 w-8 h-8 border border-[#334155] rounded-full flex items-center justify-center text-[#94a3b8] text-sm group-hover:border-[#7B5CFF] group-hover:text-[#FF6EC7] group-hover:rotate-45 transition-all duration-300">
                         →
                     </div>
 
@@ -151,11 +155,11 @@
                     Leading Companies
                 </h2>
 
-                <div class="w-20 h-[2px] bg-[#80B77F] mx-auto mt-4"></div>
+                <div class="w-20 h-[2px] bg-[#FF6EC7] mx-auto mt-4"></div>
 
             </div>
             <div v-if="companies.length">
-                <Swiper :modules="modules" :slides-per-view="'auto'" :space-between="80" :loop="true" :speed="16000"
+                <Swiper :modules="modules" :slides-per-view="'auto'" :space-between="80" :loop="true" :speed="20000"
                     :loop-additional-slides="20" :free-mode="true" :free-mode-momentum="false" :allow-touch-move="false"
                     :autoplay="{
                         delay: 1,
@@ -171,7 +175,8 @@
         </section>
 
         <!-- section 4 -->
-        <section class="snap-start min-h-screen py-24 px-10 m-10">
+        <section class="snap-start min-h-screen py-24 px-10 m-10
+bg-gradient-to-b from-[#0B0E2A] to-[#16133A]">
 
             <div class="flex justify-between items-baseline mb-16 reveal">
                 <h2 class="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-none tracking-[-0.02em]">
@@ -190,7 +195,7 @@
                     :style="`transition-delay: ${i * 50}ms`">
 
                     <div
-                        class="absolute inset-0 bg-[#C4DEC8] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500" />
+                        class="absolute inset-0 bg-gradient-to-r from-[#7B5CFF] to-[#FF6EC7] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500" />
 
                     <span
                         class="font-serif text-[clamp(1.2rem,2.5vw,2rem)] relative z-10 group-hover:text-[#5B3A68] transition-colors duration-300">
@@ -209,27 +214,43 @@
         </section>
 
         <!-- section 5 -->
-        <section
-            class="snap-start min-h-screen bg-[#80B77F] py-28 px-10 grid grid-cols-2 max-md:grid-cols-1 gap-20 items-center relative overflow-hidden">
+        <section class="snap-start min-h-screen
+bg-gradient-to-br from-[#1A1448] to-[#0B0E2A]
+grid grid-cols-2 max-md:grid-cols-1 gap-20 items-center
+pt-32 pb-20 px-10">
 
             <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#9C5F93] rounded-full opacity-25 blur-[80px]" />
 
+            <!-- LEFT -->
             <h2 class="font-serif text-[clamp(3rem,7vw,7rem)] text-[#f8fafc] leading-[0.9] tracking-[-0.04em] reveal">
                 Let's<br />Work<br /><em class="italic opacity-60">Together</em>
             </h2>
 
-            <div class="relative z-10 reveal">
+            <!-- RIGHT -->
+            <div class="relative z-10 reveal max-w-xl">
 
-                <p class="text-[0.82rem] leading-[1.9] text-[#f8fafc]/80 mb-10">
+                <p class="text-[0.9rem] leading-[1.9] text-[#f8fafc]/80 mb-10">
                     Have a project in mind? Let's build something amazing together. We design modern digital
-                    experiences
-                    powered by intelligent systems.
+                    experiences powered by intelligent systems.
                 </p>
 
-                <NuxtLink to="/contact"
-                    class="inline-block bg-[#f8fafc] text-[#0f172a] px-9 py-4 font-bold text-[0.75rem] tracking-[2px] uppercase no-underline hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_#065f62] transition-all duration-200">
-                    Get In Touch
-                </NuxtLink>
+                <div class="flex gap-6 flex-wrap">
+
+                    <NuxtLink to="/contact" class="inline-block bg-gradient-to-r from-[#7B5CFF] to-[#FF6EC7]
+                text-white px-9 py-4 font-bold text-[0.75rem]
+                tracking-[2px] uppercase rounded-full
+                hover:scale-105 transition-all duration-300 shadow-lg">
+                        Get In Touch
+                    </NuxtLink>
+
+                    <a href="mailto:hello@kurohaeksagon.com" class="inline-block bg-gradient-to-r from-[#0a6d20] to-[#a3ffc9]
+                text-white px-9 py-4 font-bold text-[0.75rem]
+                tracking-[2px] uppercase rounded-full
+                hover:scale-105 transition-all duration-300 shadow-lg">
+                        Send Email
+                    </a>
+
+                </div>
 
             </div>
 
@@ -427,7 +448,29 @@ onUnmounted(() => {
 
 <style scoped>
 body {
-    font-family: 'Sora', sans-serif;
+    background: #0B0E2A;
+}
+
+.glow-purple {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: #7B5CFF;
+    filter: blur(200px);
+    opacity: .25;
+}
+
+.glow-pink {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: #FF6EC7;
+    filter: blur(180px);
+    opacity: .25;
+}
+
+.group:hover .skill-bg {
+    background: linear-gradient(90deg, #7B5CFF, #FF6EC7);
 }
 
 .company-marquee {
@@ -448,21 +491,6 @@ body {
     justify-content: center;
 }
 
-.company-logo {
-    height: 50px;
-    width: auto;
-    min-width: 80px;
-    object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.6;
-    transition: all 0.35s ease;
-}
-
-.company-logo:hover {
-    filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.08);
-}
 
 :deep(.swiper-wrapper) {
     transition-timing-function: linear !important;
@@ -627,6 +655,162 @@ html {
     to {
         transform: translateX(-50%);
     }
+}
+
+/* ------------------------------
+GLOBAL FUTURISTIC THEME
+------------------------------ */
+section {
+    position: relative;
+}
+
+html,
+body {
+    background: radial-gradient(circle at 20% 20%, #2b1f6b 0%, #0b0e2a 50%, #050713 100%);
+}
+
+/* ------------------------------
+HERO BACKGROUND
+------------------------------ */
+
+.snap-start:first-of-type {
+    background:
+        radial-gradient(circle at 70% 40%, rgba(255, 110, 199, 0.25), transparent 50%),
+        radial-gradient(circle at 20% 20%, rgba(123, 92, 255, 0.35), transparent 50%),
+        linear-gradient(135deg, #0b0e2a, #1b1445, #2c1f6b);
+}
+
+
+/* ------------------------------
+BUTTON GRADIENT
+------------------------------ */
+
+a[href="/about"] {
+    background: linear-gradient(90deg, #7B5CFF, #FF6EC7);
+    border-radius: 40px;
+    box-shadow: 0 10px 40px rgba(123, 92, 255, .45);
+}
+
+a[href="/about"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(123, 92, 255, .7);
+}
+
+
+/* ------------------------------
+SECTION BACKGROUNDS
+------------------------------ */
+
+section:nth-of-type(2) {
+    background: linear-gradient(180deg, #0b0e2a, #14123a);
+}
+
+section:nth-of-type(3) {
+    background: linear-gradient(180deg, #1b1445, #0b0e2a);
+}
+
+section:nth-of-type(4) {
+    background: linear-gradient(180deg, #0b0e2a, #121035);
+}
+
+section:nth-of-type(5) {
+    background: linear-gradient(135deg, #1a1448, #0b0e2a);
+}
+
+
+/* ------------------------------
+CARD STYLE
+------------------------------ */
+
+.focus-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* ------------------------------
+SOLUTION CARDS
+------------------------------ */
+
+.bg-\[\#9C5F93\] {
+    background: linear-gradient(145deg, #241c5a, #1b1544);
+    border: 1px solid rgba(123, 92, 255, 0.25);
+}
+
+.bg-\[\#9C5F93\]:hover {
+    background: linear-gradient(145deg, #2f2573, #20195a);
+}
+
+
+/* ------------------------------
+COMPANY LOGO STYLE
+------------------------------ */
+
+.company-logo {
+    height: 55px;
+    filter: brightness(.85) grayscale(.2);
+    opacity: .8;
+    transition: all .35s ease;
+}
+
+.company-logo:hover {
+    filter: brightness(1.2) drop-shadow(0 0 15px #7B5CFF);
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+
+/* ------------------------------
+SKILL HOVER
+------------------------------ */
+
+li:hover {
+    background: linear-gradient(90deg, #7B5CFF22, #FF6EC722);
+}
+
+
+/* ------------------------------
+CURSOR
+------------------------------ */
+
+.bg-\[\#80B77F\] {
+    background: #FF6EC7;
+}
+
+.border-\[\#80B77F\] {
+    border-color: #7B5CFF;
+}
+
+
+/* ------------------------------
+GLOW EFFECTS
+------------------------------ */
+
+section::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: #7B5CFF;
+    filter: blur(200px);
+    opacity: .18;
+    top: -150px;
+    right: -150px;
+    pointer-events: none;
+}
+
+section::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: #FF6EC7;
+    filter: blur(180px);
+    opacity: .18;
+    bottom: -150px;
+    left: -150px;
+    pointer-events: none;
 }
 
 /* Tailwind can't do these directly */
