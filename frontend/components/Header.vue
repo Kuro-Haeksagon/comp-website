@@ -11,7 +11,7 @@
       <!-- LOGO -->
       <NuxtLink to="/" class="relative group cursor-pointer flex items-center">
         <img
-          src="~/assets/KH Logo.png"
+          src="~/assets/KH Logo(W).png"
           alt="Kuro Haeksagon"
           class="h-14 w-auto"
         />

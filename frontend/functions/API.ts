@@ -1,37 +1,30 @@
-import { useApi } from "../composables/useApi"
+import { useApi } from "../composables/useApi";
 
 const API = {
-
   async getArticles() {
+    const api: any = useApi();
 
-    const api: any = useApi()
+    const res = await api.get("/api/articles");
 
-    const res = await api.get("/api/articles")
-
-    return await res.json()
-
+    return await res.json();
   },
 
   async getCompanies() {
+    const api: any = useApi();
 
-    const api: any = useApi()
+    const res = await api.get("/api/companies");
 
-    const res = await api.get("/api/companies")
-
-    return await res.json()
-
+    return await res.json();
   },
 
   async getArticleById(id: string) {
+    const api: any = useApi();
+    console.log("ssssss");
 
-    const api: any = useApi()
+    const res = await api.get(`/api/articles/${id}`);
 
-    const res = await api.get(`/api/articles/${id}`)
+    return await res.json();
+  },
+};
 
-    return await res.json()
-
-  }
-
-}
-
-export default API
+export default API;

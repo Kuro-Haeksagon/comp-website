@@ -167,6 +167,29 @@ const fetchArticles = async () => {
   }
 
 }
+const fetchArticlesID = async (id) => {
+
+  try {
+
+    loading.value = true
+
+    const res = await API.getArticleByID(id)
+
+    return res?.data || res || null
+
+  } catch (err) {
+
+    console.error("โหลดบทความไม่สำเร็จ", err)
+
+    return null
+
+  } finally {
+
+    loading.value = false
+
+  }
+
+}
 
 const formatDate = (dateString) => {
 
