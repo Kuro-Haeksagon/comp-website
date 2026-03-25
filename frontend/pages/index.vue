@@ -1,174 +1,121 @@
 <template>
   <div
-    class="bg-[#291058] text-[#F1F5FF] overflow-x-hidden cursor-none snap-y snap-mandatory h-screen overflow-y-scroll"
+    class="bg-[#291058] text-[#F1F5FF] overflow-x-hidden snap-y snap-proximity h-screen overflow-y-scroll"
   >
-    <div
+    <!-- <div
       ref="cursor"
       class="fixed w-3 h-3 bg-[#80B77F] rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
     />
     <div
       ref="cursorRing"
       class="fixed w-10 h-10 border border-[#80B77F] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 opacity-40 transition-[width,height] duration-300"
-    />
+    /> -->
 
     <Header />
     <!-- section 1 -->
     <section
-      class="snap-start min-h-screen grid grid-cols-2 max-md:grid-cols-1 overflow-hidden relative"
+      class="snap-start min-h-screen relative overflow-hidden flex flex-col md:grid md:grid-cols-2"
     >
-      <!-- VIDEO BACKGROUND -->
       <video
         autoplay
         muted
         loop
         playsinline
-        class="absolute inset-0 w-full h-full object-cover z-0"
+        class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover z-0 brightness-110 contrast-110 saturate-110"
       >
         <source src="~/assets/VideoKH.mp4" type="video/mp4" />
       </video>
 
-      <div class="absolute inset-0 bg-[#0B0E2A]/60 z-[1]"></div>
-
-      <!-- LEFT CONTENT -->
       <div
-        class="pt-36 pb-16 px-12 flex flex-col justify-between relative z-10 m-10"
-      >
-        <div>
-          <p
-            class="text-[0.65rem] tracking-[3px] uppercase text-[#64748b] opacity-0 animate-fadeUp animation-delay-400"
-          ></p>
+        class="absolute inset-0 z-[1] bg-black/30 md:bg-gradient-to-b md:from-[#0B0E2A]/20 md:via-transparent md:to-[#0B0E2A]/30"
+      ></div>
 
+      <div
+        class="relative z-10 pt-32 pb-10 px-8 md:pt-36 md:pb-16 md:px-12 flex flex-col justify-center md:justify-between h-full"
+      >
+        <div class="max-md:text-center">
           <h1
             v-html="heroTitle"
-            class="font-serif text-[clamp(3rem,10vw,9rem)] leading-[0.9] tracking-[-0.03em] mt-4 opacity-0 animate-revealUp animation-delay-500"
+            class="font-serif text-[clamp(2.5rem,8vw,9rem)] leading-[1] md:leading-[0.9] tracking-[-0.03em] mt-4 opacity-0 animate-revealUp animation-delay-500"
           ></h1>
+
+          <div
+            class="opacity-0 animate-fadeUp animation-delay-700 mt-6 md:mt-0 flex flex-col items-center md:items-end gap-8"
+          >
+            <p
+              class="text-[0.95rem] md:text-[1rem] leading-[1.7] md:leading-[1.9] text-[#eaefdc] max-w-xs text-center md:text-left"
+            >
+              {{ heroDescription }}
+            </p>
+          </div>
         </div>
 
         <div
-          class="opacity-0 animate-fadeUp animation-delay-700 flex flex-col items-end gap-8"
+          class="flex items-center justify-center md:justify-start gap-4 md:gap-5 flex-wrap mt-10 md:mt-0 opacity-0 animate-fadeUp animation-delay-700"
         >
-          <p
-            class="text-[1rem] leading-[1.9] text-[#eaefdc] max-w-xs text-left"
-          >
-            {{ heroDescription }}
-          </p>
-        </div>
-
-        <div class="flex items-center gap-5 flex-wrap">
           <NuxtLink
             to="/about"
-            class="relative px-8 py-3.5 font-bold text-[0.75rem] tracking-[2px] uppercase text-white rounded-full bg-gradient-to-r from-[#6E307E] via-[#B34F8C] to-[#EB8E8B] hover:scale-105 transition-all duration-300 shadow-lg shadow-[#6E307E]/30"
+            class="px-6 py-3 md:px-8 md:py-3.5 font-bold text-[0.7rem] md:text-[0.75rem] tracking-[2px] uppercase text-white rounded-full bg-gradient-to-r from-[#6E307E] via-[#B34F8C] to-[#EB8E8B] hover:scale-105 transition-all duration-300 shadow-lg shadow-[#6E307E]/30"
           >
             Our Solutions
           </NuxtLink>
 
           <NuxtLink
             to="/articles"
-            class="text-[0.7rem] tracking-[2px] uppercase text-[#64748b] border-b border-[#cbd5e1] pb-0.5 no-underline hover:text-[#9C5F93] hover:border-[#9C5F93] transition-colors"
+            class="text-[0.65rem] md:text-[0.7rem] tracking-[2px] uppercase text-[#cbd5e1] border-b border-[#cbd5e1] pb-0.5 no-underline hover:text-[#9C5F93] hover:border-[#9C5F93] transition-colors"
           >
             Read Articles
           </NuxtLink>
         </div>
       </div>
 
-      <!-- RIGHT IMAGE -->
       <div
-        class="relative overflow-hidden max-md:h-[50vh] flex items-center justify-center z-10"
+        class="relative z-10 flex items-center justify-center h-[35vh] md:h-full overflow-hidden"
       >
         <img
           src="~/assets/bot-logo-kh.png"
           alt="AI Bot"
-          class="max-h-[80%] object-contain animate-float drop-shadow-2xl"
+          class="max-h-[80%] md:max-h-[75%] object-contain animate-float drop-shadow-2xl"
         />
       </div>
     </section>
-    <!-- section 1 -->
-    <!-- <section
-      class="snap-start min-h-screen grid grid-cols-2 max-md:grid-cols-1 overflow-hidden bg-gradient-to-br from-[#0B0E2A] via-[#1A1448] to-[#2C1F6B]"
-    >
-      <div
-        class="pt-36 pb-16 px-12 flex flex-col justify-between relative z-10 m-10"
-      >
-        <div>
-          <p
-            class="text-[0.65rem] tracking-[3px] uppercase text-[#64748b] opacity-0 animate-fadeUp animation-delay-400"
-          ></p>
-
-          <h1
-            v-html="heroTitle"
-            class="font-serif text-[clamp(3rem,10vw,9rem)] leading-[0.9] tracking-[-0.03em] mt-4 opacity-0 animate-revealUp animation-delay-500"
-          ></h1>
-        </div>
-
-        <div
-          class="opacity-0 animate-fadeUp animation-delay-700 flex flex-col items-end gap-8"
-        >
-          <p
-            class="text-[1rem] leading-[1.9] text-[#64748b] max-w-xs text-left"
-          >
-            {{ heroDescription }}
-          </p>
-        </div>
-
-        <div class="flex items-center gap-5 flex-wrap">
-          <NuxtLink
-            to="/about"
-            class="relative px-8 py-3.5 font-bold text-[0.75rem] tracking-[2px] uppercase text-white rounded-full bg-gradient-to-r from-[#6E307E] via-[#B34F8C] to-[#EB8E8B] hover:scale-105 transition-all duration-300 shadow-lg shadow-[#6E307E]/30"
-          >
-            Our Solutions
-          </NuxtLink>
-
-          <NuxtLink
-            to="/articles"
-            class="text-[0.7rem] tracking-[2px] uppercase text-[#64748b] border-b border-[#cbd5e1] pb-0.5 no-underline hover:text-[#9C5F93] hover:border-[#9C5F93] transition-colors"
-          >
-            Read Articles
-          </NuxtLink>
-        </div>
-      </div>
-
-      <div
-        class="relative bg-gradient-to-br from-[#2C1F6B] via-[#483264] to-[#e46129a4] overflow-hidden max-md:h-[50vh] flex items-center justify-center"
-      >
-        <img
-          src="~/assets/bot-logo-kh.png"
-          alt="AI Bot"
-          class="max-h-[70%] object-contain animate-float drop-shadow-2xl relative z-10"
-        />
-      </div>
-    </section> -->
 
     <!-- section 2 -->
     <section
-      class="snap-start min-h-screen py-24 px-10 grid grid-cols-[1fr_2fr] max-md:grid-cols-1 gap-20 m-10"
+      class="snap-start min-h-screen py-24 px-10 flex flex-col md:grid md:grid-cols-[1fr_2fr] gap-10 md:gap-20 items-center m-10"
     >
       <p
-        class="text-[1.25rem] tracking-[3px] uppercase text-[#dae2ee] pt-1 reveal col-start-1"
+        class="text-[1.25rem] tracking-[3px] uppercase text-[#dae2ee] reveal col-start-1 self-start md:self-auto"
       >
         Who We Are
       </p>
 
-      <div class="feature-card col-start-1">
+      <div
+        class="feature-card col-start-1 md:col-start-1 flex justify-center items-center w-full max-md:min-h-[300px]"
+      >
         <img
           src="~/assets/features.png"
-          class="max-h-full object-contain animate-float"
+          class="max-w-full max-h-[300px] md:max-h-full object-contain animate-float"
+          alt="Features"
         />
       </div>
 
-      <div class="reveal col-start-2 row-span-2">
+      <div class="reveal md:col-start-2 md:row-span-2">
         <h2
-          class="font-serif text-[clamp(2rem,4vw,3.8rem)] leading-[1.1] tracking-[-0.02em]"
+          class="font-serif text-[clamp(2.2rem,4vw,3.8rem)] leading-[1.1] tracking-[-0.02em]"
         >
           Each
           <em
             class="font-serif bg-gradient-to-r from-[#e5b7f0] via-[#B34F8C] to-[#f49e9b] bg-clip-text text-transparent inline-block"
             >strategy</em
           >
-          is the perfect<br />
+          is the perfect<br class="hidden md:block" />
           combination of creativity and practicality.
         </h2>
 
-        <p class="text-[0.82rem] leading-[1.9] text-[#64748b] mt-6 max-w-xl">
+        <p
+          class="text-[0.85rem] md:text-[0.82rem] leading-[1.9] text-[#64748b] mt-6 max-w-xl"
+        >
           {{ introParagraph1 }}
         </p>
       </div>
@@ -312,7 +259,7 @@
     </section>
 
     <!-- section 4 -->
-    <section class="snap-start min-h-screen py-24 px-10 m-10">
+    <section class="snap-start min-h-screen py-20 px-6 md:px-10 lg:px-20">
       <div class="flex justify-between items-baseline mb-16 reveal">
         <h2
           class="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-none tracking-[-0.02em]"
@@ -329,7 +276,7 @@
         <li
           v-for="(skill, i) in skills"
           :key="skill.name"
-          class="border-b border-[#cbd5e1]/20 flex justify-between items-center py-5 relative overflow-hidden group reveal cursor-none transition-all duration-300 hover:pl-5"
+          class="border-b border-[#cbd5e1]/20 flex justify-between items-center py-5 relative overflow-hidden group reveal transition-all duration-300 hover:pl-5"
           :style="`transition-delay: ${i * 50}ms`"
         >
           <div
@@ -586,204 +533,29 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* ===============================
+GLOBAL
+=============================== */
+html,
 body {
-  background: #0b0e2a;
-}
-
-.glow-purple {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: #7b5cff;
-  filter: blur(200px);
-  opacity: 0.25;
-}
-
-.glow-pink {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: #ff6ec7;
-  filter: blur(180px);
-  opacity: 0.25;
-}
-
-.group:hover .skill-bg {
-  background: linear-gradient(90deg, #7b5cff, #ff6ec7);
-}
-
-.company-marquee {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.company-swiper {
-  width: 100%;
-}
-
-.company-slide {
-  width: auto;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-:deep(.swiper-wrapper) {
-  transition-timing-function: linear !important;
-}
-
-/* Articles */
-.focus-stage {
-  width: 1000px;
-  height: 650px;
-  position: relative;
-}
-
-/* base card */
-.focus-card {
-  position: absolute;
-  width: 340px;
-  height: 240px;
-  border-radius: 30px;
-  overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
-  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.focus-card:hover {
-  transform: scale(1.32) translate(-50%, -50%);
-  z-index: 20;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
-}
-.pos-center {
-  box-shadow:
-    0 0 40px rgba(179, 79, 140, 0.35),
-    0 0 80px rgba(179, 79, 140, 0.15);
-}
-.focus-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.focus-stage {
-  width: 100%;
-  height: 520px;
-  position: relative;
-}
-
-.focus-card {
-  position: absolute;
-  width: 360px;
-  height: 250px;
-  border-radius: 30px;
-  overflow: hidden;
-
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.focus-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* CENTER */
-
-.pos-center {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(1.25);
-  z-index: 10;
-}
-
-/* LEFT */
-
-.pos-left {
-  left: 15%;
-  top: 50%;
-  transform: translateY(-50%) scale(0.9);
-  opacity: 0.8;
-}
-
-/* RIGHT */
-
-.pos-right {
-  right: 15%;
-  top: 50%;
-  transform: translateY(-50%) scale(0.9);
-  opacity: 0.8;
-}
-
-/* FAR */
-
-.pos-left-far {
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) scale(0.75);
-  opacity: 0.4;
-  filter: blur(2px);
-}
-
-.pos-right-far {
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) scale(0.75);
-  opacity: 0.4;
-  filter: blur(2px);
-}
-
-/* HIDDEN */
-
-.pos-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-/* overlay */
-.focus-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 18px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-}
-
-.focus-overlay h3 {
-  color: white;
-  font-size: 0.9rem;
-}
-
-/* Smooth animation */
-@keyframes tickerMove {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.feature-card {
-  border-radius: 30px;
-  padding: 40px;
-  border: 1px solid #f3f4f6;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
-  max-width: 500px;
-  margin-top: 10px;
-}
-
-html {
   scroll-behavior: smooth;
+  background: radial-gradient(
+    circle at 20% 20%,
+    #2b1f6b 0%,
+    #0b0e2a 50%,
+    #050713 100%
+  );
 }
 
-/* Reveal */
+section {
+  position: relative;
+  scroll-snap-align: start;
+  scroll-margin-top: 80px;
+}
+
+/* ===============================
+REVEAL ANIMATION
+=============================== */
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -797,13 +569,14 @@ html {
   transform: translateY(0);
 }
 
-/* Keyframes */
+/* ===============================
+ANIMATIONS
+=============================== */
 @keyframes fadeUp {
   from {
     opacity: 0;
     transform: translateY(16px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -815,7 +588,6 @@ html {
     opacity: 0;
     transform: translateY(60px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -827,178 +599,12 @@ html {
   100% {
     transform: translateY(0);
   }
-
   50% {
     transform: translateY(-18px);
   }
 }
 
-@keyframes ticker {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* ------------------------------
-GLOBAL FUTURISTIC THEME
------------------------------- */
-section {
-  position: relative;
-}
-
-html,
-body {
-  background: radial-gradient(
-    circle at 20% 20%,
-    #2b1f6b 0%,
-    #0b0e2a 50%,
-    #050713 100%
-  );
-}
-
-/* ------------------------------
-HERO BACKGROUND
------------------------------- */
-
-.snap-start:first-of-type {
-  background:
-    radial-gradient(
-      circle at 70% 40%,
-      rgba(255, 110, 199, 0.25),
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(123, 92, 255, 0.35),
-      transparent 50%
-    ),
-    linear-gradient(135deg, #0b0e2a, #1b1445, #2c1f6b);
-}
-
-/* ------------------------------
-BUTTON GRADIENT
------------------------------- */
-
-a[href="/about"]:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 20px 60px rgba(123, 92, 255, 0.7);
-}
-
-/* ------------------------------
-SECTION BACKGROUNDS
------------------------------- */
-
-section:nth-of-type(2) {
-  /* background: linear-gradient(180deg, #0b0e2a, #14123a); */
-}
-
-section:nth-of-type(3) {
-  /* background: linear-gradient(180deg, #1b1445, #0b0e2a); */
-}
-
-section:nth-of-type(4) {
-  /* background: linear-gradient(180deg, #0b0e2a, #121035); */
-}
-
-section:nth-of-type(5) {
-  /* background: linear-gradient(135deg, #1a1448, #0b0e2a); */
-}
-
-/* ------------------------------
-CARD STYLE
------------------------------- */
-
-.focus-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* ------------------------------
-SOLUTION CARDS
------------------------------- */
-
-.bg-\[\#9C5F93\] {
-  background: linear-gradient(145deg, #241c5a, #1b1544);
-  border: 1px solid rgba(123, 92, 255, 0.25);
-}
-
-.bg-\[\#9C5F93\]:hover {
-  background: linear-gradient(145deg, #2f2573, #20195a);
-}
-
-/* ------------------------------
-COMPANY LOGO STYLE
------------------------------- */
-
-.company-logo {
-  height: 55px;
-  filter: brightness(0.85) grayscale(0.2);
-  opacity: 0.8;
-  transition: all 0.35s ease;
-}
-
-.company-logo:hover {
-  filter: brightness(1.2) drop-shadow(0 0 15px #7b5cff);
-  transform: scale(1.15);
-  opacity: 1;
-}
-
-/* ------------------------------
-SKILL HOVER
------------------------------- */
-
-li:hover {
-  background: linear-gradient(90deg, #7b5cff22, #ff6ec722);
-}
-
-/* ------------------------------
-CURSOR
------------------------------- */
-
-.bg-\[\#80B77F\] {
-  background: #ff6ec7;
-}
-
-.border-\[\#80B77F\] {
-  border-color: #7b5cff;
-}
-
-/* ------------------------------
-GLOW EFFECTS
------------------------------- */
-
-section::before {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: #7b5cff;
-  filter: blur(200px);
-  opacity: 0.18;
-  top: -150px;
-  right: -150px;
-  pointer-events: none;
-}
-
-section::after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: #ff6ec7;
-  filter: blur(180px);
-  opacity: 0.18;
-  bottom: -150px;
-  left: -150px;
-  pointer-events: none;
-}
-
-/* Tailwind can't do these directly */
+/* utility */
 .animate-fadeUp {
   animation: fadeUp 0.8s forwards;
 }
@@ -1011,23 +617,197 @@ section::after {
   animation: float 6s ease-in-out infinite;
 }
 
-.animate-ticker {
-  animation: ticker 18s linear infinite;
-}
-
 .animation-delay-200 {
   animation-delay: 0.2s;
 }
-
 .animation-delay-400 {
   animation-delay: 0.4s;
 }
-
 .animation-delay-500 {
   animation-delay: 0.5s;
 }
-
 .animation-delay-700 {
   animation-delay: 0.7s;
+}
+
+/* ===============================
+FEATURE CARD
+=============================== */
+.feature-card {
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .feature-card {
+    padding: 40px;
+    max-width: 500px;
+  }
+}
+
+/* ===============================
+FOCUS CAROUSEL (สำคัญสุด)
+=============================== */
+.focus-stage {
+  width: 100%;
+  max-width: 1100px;
+  height: 500px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.focus-card {
+  position: absolute;
+  width: 320px;
+  height: 220px;
+  border-radius: 24px;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.focus-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* hover */
+.focus-card:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+  z-index: 20;
+}
+
+/* positions */
+.pos-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 10;
+}
+
+.pos-left {
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  opacity: 0.7;
+}
+
+.pos-right {
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  opacity: 0.7;
+}
+
+.pos-left-far {
+  left: -5%;
+  top: 50%;
+  transform: translateY(-50%) scale(0.7);
+  opacity: 0.3;
+}
+
+.pos-right-far {
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%) scale(0.7);
+  opacity: 0.3;
+}
+
+.pos-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* overlay */
+.focus-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.focus-overlay h3 {
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+/* ===============================
+SWIPER
+=============================== */
+.company-swiper {
+  width: 100%;
+}
+
+.company-slide {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:deep(.swiper-wrapper) {
+  transition-timing-function: linear !important;
+}
+
+.company-logo {
+  height: 50px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.company-logo:hover {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+/* ===============================
+SKILL HOVER
+=============================== */
+li:hover {
+  background: linear-gradient(90deg, #7b5cff22, #ff6ec722);
+}
+
+/* ===============================
+GLOW EFFECT (เบาลง)
+=============================== */
+section::before,
+section::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.15;
+  filter: blur(160px);
+}
+.scroll-container {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+section::before {
+  width: 400px;
+  height: 400px;
+  background: #7b5cff;
+  top: -120px;
+  right: -120px;
+}
+
+section::after {
+  width: 300px;
+  height: 300px;
+  background: #ff6ec7;
+  bottom: -120px;
+  left: -120px;
 }
 </style>
