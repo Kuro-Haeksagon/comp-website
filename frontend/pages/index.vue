@@ -23,7 +23,7 @@
         playsinline
         class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover z-0 brightness-110 contrast-110 saturate-110"
       >
-        <source src="~/assets/VideoKH.mp4" type="video/mp4" />
+        <source src="~/assets/1.mp4" type="video/mp4" />
       </video>
 
       <div
@@ -43,7 +43,7 @@
             class="opacity-0 animate-fadeUp animation-delay-700 mt-6 md:mt-0 flex flex-col items-center md:items-end gap-8"
           >
             <p
-              class="text-[0.95rem] md:text-[1rem] leading-[1.7] md:leading-[1.9] text-[#eaefdc] max-w-xs text-center md:text-left"
+              class="text-[0.95rem] md:text-[1rem] leading-[1.7] md:leading-[1.9] text-[#eaefdc] max-w-xs text-center md:text-left mt-6"
             >
               {{ heroDescription }}
             </p>
@@ -533,6 +533,8 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+
+
 /* ===============================
 GLOBAL
 =============================== */
