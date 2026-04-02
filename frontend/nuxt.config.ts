@@ -17,7 +17,7 @@ export default defineNuxtConfig({
         { hid: 'description', name: 'description', content: 'Kuro Haeksagon' }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.jpg' }
+        { rel: 'icon', type: 'image/png', href: '/tab-logg.png' }
       ]
     }
   },
