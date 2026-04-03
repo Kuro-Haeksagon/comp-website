@@ -230,13 +230,12 @@
           :slides-per-view="'auto'"
           :space-between="80"
           :loop="true"
-          :speed="20000"
-          :loop-additional-slides="20"
-          :free-mode="true"
-          :free-mode-momentum="false"
+          :looped-slides="30"
+          :speed="4000"
+          :free-mode="{ enabled: true, momentum: false }"
           :allow-touch-move="false"
           :autoplay="{
-            delay: 1,
+            delay: 0,
             disableOnInteraction: false,
           }"
           class="company-swiper"
@@ -517,12 +516,8 @@ onMounted(async () => {
   }, 3500);
 });
 const duplicatedCompanies = computed(() => {
-  return [
-    ...companies.value,
-    ...companies.value,
-    ...companies.value,
-    ...companies.value,
-  ];
+  const base = companies.value;
+  return Array.from({ length: 10 }, () => base).flat();
 });
 
 onUnmounted(() => {
@@ -533,8 +528,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-
-
 /* ===============================
 GLOBAL
 =============================== */
@@ -762,6 +755,7 @@ SWIPER
 
 :deep(.swiper-wrapper) {
   transition-timing-function: linear !important;
+  will-change: transform;
 }
 
 .company-logo {
