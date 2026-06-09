@@ -14,8 +14,31 @@ dist/
 .env.*
 
 # OS
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Nuxt
+.nuxt/
+.output/
+.output/public/
+dist/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
 .DS_Store
+Thumbs.db
 
 # IDE
 .vscode/
+.idea/
 
