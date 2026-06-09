@@ -1,18 +1,22 @@
 package handlers
 
 import (
+	"context"
 	"fmt"
-	"io"
 	"net/http"
-	"os"
-	"path/filepath"
 	"strings"
 	"time"
 
+	"cloud.google.com/go/storage"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"personal-web/internal/models"
 	"personal-web/internal/services"
+)
+
+const (
+	gcsBucket = "comp-website-uploads"
+	gcsBase   = "https://storage.googleapis.com/comp-website-uploads"
 )
 
 type CompanyHandler struct {
@@ -68,7 +72,6 @@ func (h *CompanyHandler) GetCompanies(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-
 	c.JSON(http.StatusOK, companies)
 }
 
@@ -79,13 +82,11 @@ func (h *CompanyHandler) GetCompany(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Company not found"})
 		return
 	}
-
 	c.JSON(http.StatusOK, company)
 }
 
 func (h *CompanyHandler) UpdateCompany(c *gin.Context) {
 	id := c.Param("id")
-	
 	company, err := h.companyService.GetCompanyByID(id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Company not found"})
@@ -129,23 +130,19 @@ func (h *CompanyHandler) UpdateCompany(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-
 	c.JSON(http.StatusOK, company)
 }
 
 func (h *CompanyHandler) DeleteCompany(c *gin.Context) {
 	id := c.Param("id")
-	
 	if err := h.companyService.DeleteCompany(id); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-
 	c.JSON(http.StatusOK, gin.H{"message": "Company deleted successfully"})
 }
 
 func (h *CompanyHandler) UploadLogo(c *gin.Context) {
-	// Get the uploaded file
 	file, header, err := c.Request.FormFile("logo")
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "No file uploaded"})
@@ -167,32 +164,36 @@ func (h *CompanyHandler) UploadLogo(c *gin.Context) {
 	}
 
 	// Generate unique filename
-	ext := filepath.Ext(header.Filename)
-	filename := fmt.Sprintf("%s_%d%s", uuid.New().String(), time.Now().Unix(), ext)
-	
-	// Create uploads directory if it doesn't exist
-	uploadDir := "./uploads/companies"
-	if err := os.MkdirAll(uploadDir, 0755); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create upload directory"})
-		return
-	}
+	ext := strings.ToLower(header.Filename[strings.LastIndex(header.Filename, "."):])
+	filename := fmt.Sprintf("companies/%s_%d%s", uuid.New().String(), time.Now().Unix(), ext)
 
-	// Save file
-	filePath := filepath.Join(uploadDir, filename)
-	dst, err := os.Create(filePath)
+	// Upload to GCS
+	ctx := context.Background()
+	client, err := storage.NewClient(ctx)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save file"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to connect to storage"})
 		return
 	}
-	defer dst.Close()
+	defer client.Close()
 
-	if _, err := io.Copy(dst, file); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save file"})
+	wc := client.Bucket(gcsBucket).Object(filename).NewWriter(ctx)
+	wc.ContentType = contentType
+
+	buf := make([]byte, header.Size)
+	if _, err := file.Read(buf); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read file"})
+		return
+	}
+	if _, err := wc.Write(buf); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to upload file"})
+		return
+	}
+	if err := wc.Close(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to finalize upload"})
 		return
 	}
 
-	// Return the file path
-	logoURL := fmt.Sprintf("/uploads/companies/%s", filename)
+	logoURL := fmt.Sprintf("%s/%s", gcsBase, filename)
 	c.JSON(http.StatusOK, gin.H{
 		"logo_url": logoURL,
 		"filename": filename,

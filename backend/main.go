@@ -77,9 +77,6 @@ func main() {
 		c.Next()
 	})
 
-	// Serve static files
-	r.Static("/uploads", "./uploads")
-
 	// Health check
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{
