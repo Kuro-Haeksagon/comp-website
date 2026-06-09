@@ -1,15 +1,24 @@
-FROM node:18-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Expose port
+COPY . .
+
+RUN npm run build
+
+# -------- runtime --------
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/.output ./.output
+
+ENV NITRO_HOST=0.0.0.0
+ENV NITRO_PORT=3000
+
 EXPOSE 3000
 
-# Start development server with hot reloading
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+CMD ["node", ".output/server/index.mjs"]
